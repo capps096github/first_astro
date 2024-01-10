@@ -1,0 +1,101 @@
+---
+import {
+  baseUrl,
+  coverUrl,
+  description,
+  developer,
+  keywords,
+  siteManifest,
+} from "../scripts/constants.js";
+
+interface Props {
+  pageTitle: string;
+  pageDescription: string;
+  menuItemList: [];
+}
+
+// Access passed-in component props, like `<X title="Hello, World" />`
+// These are passed in with default parameters
+const { pageTitle, pageDescription, menuItemList = [] } = Astro.props;
+
+// mark as a component
+// component: true;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content={pageTitle} />
+  <meta name="description" content={pageDescription} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={developer.author} />
+  <meta name="copyright" content={developer.copyright} />
+  <meta name="robots" content="index, follow" />
+  <meta name="rating" content="general" />
+
+  <!-- Facebook Open Graph -->
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:site_name" content={pageTitle} />
+  <meta property="og:url" content={baseUrl} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content={coverUrl} />
+
+  <!-- Twitter Open Graph -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:site" content={developer.handle} />
+  <meta name="twitter:creator" content={developer.handle} />
+  <meta name="twitter:description" content={pageDescription} />
+  <meta name="twitter:image" content={coverUrl} />
+  <meta name="twitter:image:alt" content={pageDescription} />
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content={pageTitle} />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+
+  <title>{pageTitle}</title>
+
+  <!-- PWA SUPPORT -->
+  <link rel="manifest" href={siteManifest} />
+
+  <!-- fonts -->
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,700&display=swap");
+  </style>
+
+  <!-- SEO JSON LD -->
+  <!-- Astro executes JavaScript within <script> tags only when set:html is used.
+      The set:html directive injects the generated content into the script.
+      Astro's reactivity system keeps the JSON-LD in sync with any changes to the foodItems data. -->
+  <!-- Used JSON.stringify() to ensure the output is valid JSON. -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: menuItemList.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: item.url,
+        image: item.url,
+        name: item.name,
+        description: item.description,
+      })),
+    })}
+  />
+
+  <!-- google site verification -->
+  <meta
+    name="google-site-verification"
+    content="4h_jJTu8T1HeMvDQGIWUU9dLGU72FKfoDX0QC-PPX1g"
+  />
+</head>

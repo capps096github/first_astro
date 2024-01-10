@@ -1,0 +1,251 @@
+---
+import "../scripts/constants.js";
+import { baseUrl, coverUrl, description, siteManifest, title } from "../scripts/constants.js";
+import { foodItems } from "../scripts/foods";
+// In your Astro component file, use the load() function to import the food items and dynamically generate the JSON-LD content:
+component: true;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Kalya Courts Hotel, Kalya Courts Hotel Food Menu, Kalya Courts Hotel Drinks Menu, Kalya Courts Hotel Alarcarte Menu, Kalya Courts Hotel Culinary Journey, Kalya Courts Hotel Restaurant, Kalya Courts Hotel Dining, Kalya Courts Hotel Fine Dining, Kalya Courts Hotel Gourmet, Kalya Courts Hotel Exquisite Cuisine, Kalya Courts Hotel Hospitality, Kalya Courts Hotel Fort Portal, Kalya Courts Hotel Uganda, Kalya Courts Hotel Luxury Hotel, Kalya Courts Hotel Dining Experience, Kalya Courts Hotel Gastronomy, Kalya Courts Hotel Taste Excellence, Kalya Courts Hotel Hotel Services, Kalya Courts Hotel Delightful Meals, Kalya Courts Hotel Restaurant Menu, Kalya Courts Hotel Delicious Drinks, Kalya Courts Hotel Culinary Destination"
+    />
+    <meta name="author" content="Draaaft Artworks" />
+    <meta name="copyright" content="Draaaft Artworks © 2023" />
+    <meta name="robots" content="index, follow" />
+    <meta name="rating" content="general" />
+
+    <!-- Facebook Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:url" content={baseUrl} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={coverUrl} />
+
+    <!-- Twitter Open Graph -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:site" content="@draaaft_art" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={coverUrl} />
+    <meta name="twitter:image:alt" content={description} />
+
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content={title} />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+
+    <title>
+      Kalya Courts Hotel Menu | Delight in Perfection, Taste Excellence - Your
+      Culinary Journey Begins at Kalya Courts.
+    </title>
+
+    <!-- PWA SUPPORT -->
+    <link rel="manifest" href={siteManifest} />
+
+    <!-- fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,700&display=swap");
+    </style>
+
+    <!-- SEO JSON LD -->
+    <!-- Astro executes JavaScript within <script> tags only when set:html is used.
+      The set:html directive injects the generated content into the script.
+      Astro's reactivity system keeps the JSON-LD in sync with any changes to the foodItems data. -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        itemListElement: foodItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: item.url,
+          image: item.url,
+          name: item.name,
+          description: item.description,
+        })),
+      })}
+    />
+
+    <!-- google site verification -->
+    <meta
+      name="google-site-verification"
+      content="4h_jJTu8T1HeMvDQGIWUU9dLGU72FKfoDX0QC-PPX1g"
+    />
+  </head>
+
+  <body class="font-mont bg-kalya-bg">
+    <!-- site layout -->
+    <section class="flex flex-col justify-between h-screen space-y-10">
+      <!-- nav bar -->
+      <nav
+        class="fixed top-0 left-0 right-0 px-2 py-2 space-x-2 space-y-2 drop-shadow-md text-kalya-brown md:flex md:justify-between lg:flex lg:justify-between md:px-2 sm:px-2 bg-kalya-light"
+        id="main-nav"
+      >
+        <!-- icon -->
+        <!-- align it to center when we are on a small device -->
+        <a
+          href=""
+          title="Kalya Courts Hotel Logo"
+          class="flex items-center justify-center"
+        >
+          <img
+            src={baseUrl + "assets/kalya-logo.png"}
+            alt="Kalya Courts Hotel Logo"
+            class="w-32"
+          />
+        </a>
+
+        <!-- other action buttons -->
+        <div class="flex items-center justify-center pr-4 space-x-4">
+          <a
+            href=""
+            class="px-4 py-2 text-lg font-extrabold text-center uppercase rounded-md text-kalya-light bg-kalya-brown hover:underline hover:cursor-pointer"
+          >
+            Food
+          </a>
+
+          <a
+            href="/coffee"
+            class="text-sm font-bold text-center uppercase text-kalya-brown hover:underline hover:cursor-pointer"
+          >
+            Coffee Shop
+          </a>
+          <a
+            href="/bar"
+            class="text-sm font-bold text-center uppercase text-kalya-brown hover:underline hover:cursor-pointer"
+          >
+            Bar Menu
+          </a>
+
+          <!-- <a href="https://www.kalyacourtshotel.com/" target="_blank" rel="noopener"
+          class="inline-flex px-4 py-2 space-x-2 text-sm font-semibold uppercase transition-colors duration-300 rounded-md iteplayms-center dis text-kalya-light bg-kalya-brown hover:bg-white hover:text-kalya-brown hover:cursor-pointer">
+          <span>Explore More</span>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" class="fill-current" width="24">
+            <path
+              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
+          </svg>
+        </a> -->
+        </div>
+      </nav>
+
+      <!-- Spacings to prevent overflows of the first item on mobile devices -->
+      <div class="mt-5 sm:mt-96"></div>
+      <div class="mt-5 sm:mt-96"></div>
+      <div class="mt-5 sm:mt-40"></div>
+
+      <!-- main -->
+      <main class="px-4 mx-auto lg:px-10 mt-96">
+        <div class="flex flex-col w-full space-y-4">
+          <!-- install card -->
+          <div
+            id="install-card"
+            hidden
+            class="p-6 text-white transition-colors duration-300 bg-blue-700 rounded-lg group hover:bg-kalya-brown hover:text-kalya-light"
+          >
+            <div class="flex flex-col items-center justify-center">
+              <div class="pb-6 mb-6 border-b-2 border-current">
+                <h2 class="mb-2 text-xl font-bold text-left">
+                  Say no more to scanning, and say yes to instant access!
+                </h2>
+                <p>
+                  Install this Digital Menu on your Device and Enjoy a seamless
+                  dining experience with quick offline access, faster updates
+                  and exclusive offers.
+                </p>
+
+                <p class="font-bold">
+                  No more scanning - Just tap and explore right from your home
+                  screen.
+                </p>
+              </div>
+              <button
+                id="install"
+                class="w-full px-5 py-2 font-semibold text-blue-700 uppercase transition-colors duration-300 bg-white rounded-full text-md hover:text-kalya-brown group-hover:text-kalya-brown hover:bg-kalya-light group-hover:bg-kalya-light hover:cursor-pointer"
+              >
+                <div class="inline-flex items-center text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    enable-background="new 0 0 24 24"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    class="mr-4 fill-current"
+                  >
+                    <g>
+                      <rect fill="none" height="24" width="24"></rect>
+                    </g>
+                    <g>
+                      <path
+                        d="M12,2C6.49,2,2,6.49,2,12s4.49,10,10,10s10-4.49,10-10S17.51,2,12,2z M11,10V6h2v4h3l-4,4l-4-4H11z M17,17H7v-2h10V17z"
+                      ></path>
+                    </g>
+                  </svg>
+
+                  <span> Install Menu Now</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Menu Starts -->
+          {
+            foodItems.map((foodItem) => (
+              <img
+                src={foodItem.url}
+                alt={foodItem.name}
+                class="border rounded-lg aspect-auto border-kalya-brown"
+              />
+            ))
+          }
+        </div>
+      </main>
+
+      <!-- footer from footer.js -->
+      <footer
+        id="footer"
+        class="flex flex-col p-2 space-y-2 text-sm text-center text-white bg-kalya-brown"
+      >
+        <p class="mb-2 text-xl font-bold">&copy; 2023 Kalya Courts Hotel</p>
+
+        <!-- names -->
+        <p>
+          Crafted, Engineered, and Brought to Life by
+          <a
+            href="https://github.com/capps096github"
+            class="underline text-kalya-light"
+            target="_blank"
+            rel="noopener">Brian Cephas' Signature Touch</a
+          >
+          courtesy of
+          <a
+            href="https://draaaft.web.app"
+            class="underline text-kalya-light"
+            target="_blank"
+            rel="noopener">Draaaft Artworks</a
+          >
+        </p>
+        <p class="m-2 font-bold">Reach out to get your Digital Menu too!</p>
+      </footer>
+      <!-- end footer -->
+    </section>
+    <!-- end layout -->
+  </body>
+</html>

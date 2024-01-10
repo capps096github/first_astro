@@ -1,0 +1,29 @@
+---
+import { developer, year } from "../scripts/constants";
+---
+
+<footer
+  id="footer"
+  class="flex flex-col p-2 space-y-2 text-sm text-center text-white bg-kalya-brown"
+>
+  <p class="mb-2 text-xl font-bold">&copy; {year} Kalya Courts Hotel</p>
+
+  <!-- names -->
+  <p>
+    Crafted, Engineered, and Brought to Life by
+    <a
+      href={developer.footerUrl}
+      class="underline text-kalya-light"
+      target="_blank"
+      rel="noopener">{developer.footerDev}</a
+    >
+    courtesy of
+    <a
+      href="https://draaaft.web.app"
+      class="underline text-kalya-light"
+      target="_blank"
+      rel="noopener">{developer.author}</a
+    >
+  </p>
+  <p class="mb-10 font-bold">Reach out to get your Digital Menu too!</p>
+</footer>

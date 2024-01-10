@@ -1,0 +1,42 @@
+---
+import { hotelName } from "../scripts/constants";
+import { pages } from "../scripts/pages";
+const baseUrl = "https://kalyacourtsmenu.web.app/";
+
+const { pageUrl } = Astro.props;
+---
+
+<!-- nav bar -->
+<nav
+  class="fixed top-0 left-0 right-0 px-2 py-2 space-x-2 space-y-2 drop-shadow-md text-kalya-brown md:flex md:justify-between lg:flex lg:justify-between md:px-2 sm:px-2 bg-kalya-light"
+  id="main-nav"
+>
+  <!-- icon -->
+  <!-- align it to center when we are on a small device -->
+  <a href="" title=`${hotelName} Logo` class="flex items-center justify-center">
+    <img
+      src={baseUrl + "assets/kalya-logo.png"}
+      alt=`${hotelName} Logo`
+      class="w-32"
+    />
+  </a>
+
+  <!-- other action buttons -->
+  <div class="flex items-center justify-center pr-4 space-x-4">
+    <!-- Pages -->
+    {
+      pages.map((pageItem) => (
+        <a
+          href={pageItem.href}
+          class={
+            pageItem.href === pageUrl || pageItem.otherUrls.includes(pageUrl)
+              ? "px-6 py-2 text-lg font-extrabold text-center uppercase rounded-full text-kalya-light bg-kalya-brown hover:underline hover:cursor-pointer"
+              : "text-sm font-bold text-center uppercase text-kalya-brown hover:underline hover:cursor-pointer"
+          }
+        >
+          {pageItem.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>

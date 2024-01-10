@@ -1,0 +1,48 @@
+---
+import Footer from "../components/Footer.astro";
+// import Head from "../components/Head.astro";
+import InstallCard from "../components/InstallCard.astro";
+import NavBar from "../components/NavBar.astro";
+// import { title } from "../scripts/constants";
+import { foodItems } from "../scripts/foods";
+---
+
+<html lang="en">
+  <!-- <Head pageTitle={title} /> -->
+  <body class="font-mont bg-kalya-bg">
+    <!-- site layout -->
+    <section class="flex flex-col justify-between h-screen space-y-10">
+      <!-- nav bar -->
+      <NavBar pageUrl="/food" />
+
+      <!-- Spacings to prevent overflows of the first item on mobile devices -->
+      <div class="mt-5 sm:mt-96"></div>
+      <div class="mt-5 sm:mt-96"></div>
+
+      <!-- main -->
+      <main class="px-4 mx-auto lg:px-10 mt-96">
+        <div class="flex flex-col w-full space-y-4">
+          <!-- install card -->
+          <InstallCard />
+
+          <!-- Menu Starts -->
+          {
+            foodItems.map((foodItem) => (
+              <img
+                src={foodItem.url}
+                alt={foodItem.name}
+                class="border rounded-lg aspect-auto border-kalya-brown"
+              />
+            ))
+          }
+        </div>
+      </main>
+
+      <!-- footer -->
+      <Footer />
+
+      <!-- close -->
+    </section>
+    <!-- end layout -->
+  </body>
+</html>

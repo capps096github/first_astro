@@ -1,0 +1,106 @@
+---
+import Footer from "../components/Footer.astro";
+import Head from "../components/Head.astro";
+import InstallCard from "../components/InstallCard.astro";
+import NavBar from "../components/NavBar.astro";
+import { description, title } from "../scripts/constants";
+import { foodItems } from "../scripts/foods";
+
+// variables
+// Access passed-in component props, like `<X title="Hello, World" />`
+const {
+  pageTitle = title,
+  header = title,
+  pageUrl = "/",
+  pageDescription = description,
+  menuItemList = foodItems,
+} = Astro.props;
+---
+
+<html lang="en">
+  <Head
+    pageTitle={pageTitle}
+    pageDescription={pageDescription}
+    menuItemList={menuItemList}
+  />
+  <body class="font-mont bg-kalya-bg">
+    <!-- site layout -->
+    <section class="flex flex-col justify-between h-screen space-y-10">
+      <!-- nav bar -->
+      <NavBar pageUrl={pageUrl} />
+
+      <!-- Spacings to prevent overflows of the first item on mobile devices -->
+      <div class="mt-5 sm:mt-96"></div>
+      <div class="mt-5 sm:mt-96"></div>
+
+      <!-- main -->
+      <main class="px-4 mx-auto lg:px-10 mt-96">
+        <div class="flex flex-col w-full space-y-4">
+          <!-- install card -->
+          <InstallCard />
+
+          <!-- use slot, to insert something -->
+          <!-- <slot /> -->
+
+          <h1 class="mb-2 text-4xl font-extrabold text-kalya-brown text-center">
+            {header}
+          </h1>
+
+          <!-- Menu Starts -->
+          {
+            menuItemList.map((item) => (
+              <img
+                src={item.url}
+                alt={item.name}
+                class="border rounded-lg aspect-auto border-kalya-brown"
+              />
+            ))
+          }
+        </div>
+      </main>
+
+      <!-- footer -->
+      <Footer />
+
+      <!-- close -->
+    </section>
+    <!-- end layout -->
+
+    <!-- App Scripts -->
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIodzytV6kRMCT0m9Psn1xbjrZwtWlpc0",
+        authDomain: "kalya-courts-hotel.firebaseapp.com",
+        databaseURL: "https://kalya-courts-hotel.firebaseio.com",
+        projectId: "kalya-courts-hotel",
+        storageBucket: "kalya-courts-hotel.appspot.com",
+        messagingSenderId: "199061751233",
+        appId: "1:199061751233:web:6e1cb7ca4f5b576aa29b40",
+        measurementId: "G-5BGM1GD9QY",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+
+    <!-- Install PWA Script -->
+
+    <!-- security script to prevent right clicking -->
+    <script>
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
