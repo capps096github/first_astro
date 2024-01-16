@@ -3,16 +3,17 @@ import Footer from "../components/Footer.astro";
 import Head from "../components/Head.astro";
 import InstallCard from "../components/InstallCard.astro";
 import NavBar from "../components/NavBar.astro";
-import { description, title } from "../scripts/constants";
+import { coverUrl, description, hotelName, title } from "../scripts/constants";
 import { foodItems } from "../scripts/foods";
 
 // variables
 // Access passed-in component props, like `<X title="Hello, World" />`
 const {
-  pageTitle = title,
+  pageTitle = title + " | " + hotelName,
   header = title,
   pageUrl = "/",
   pageDescription = description,
+  pageCoverImage = coverUrl,
   menuItemList = foodItems,
 } = Astro.props;
 ---
@@ -20,6 +21,7 @@ const {
 <html lang="en">
   <Head
     pageTitle={pageTitle}
+    pageCoverImage={pageCoverImage}
     pageDescription={pageDescription}
     menuItemList={menuItemList}
   />

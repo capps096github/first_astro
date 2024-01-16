@@ -1,8 +1,6 @@
 ---
 import {
   baseUrl,
-  coverUrl,
-  description,
   developer,
   keywords,
   siteManifest,
@@ -11,12 +9,18 @@ import {
 interface Props {
   pageTitle: string;
   pageDescription: string;
+  pageCoverImage: string;
   menuItemList: [];
 }
 
 // Access passed-in component props, like `<X title="Hello, World" />`
 // These are passed in with default parameters
-const { pageTitle, pageDescription, menuItemList = [] } = Astro.props;
+const {
+  pageTitle,
+  pageCoverImage,
+  pageDescription,
+  menuItemList = [],
+} = Astro.props;
 
 // mark as a component
 // component: true;
@@ -42,7 +46,7 @@ const { pageTitle, pageDescription, menuItemList = [] } = Astro.props;
   <meta property="og:url" content={baseUrl} />
   <meta property="og:description" content={pageDescription} />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content={coverUrl} />
+  <meta property="og:image" content={pageCoverImage} />
 
   <!-- Twitter Open Graph -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -50,7 +54,7 @@ const { pageTitle, pageDescription, menuItemList = [] } = Astro.props;
   <meta name="twitter:site" content={developer.handle} />
   <meta name="twitter:creator" content={developer.handle} />
   <meta name="twitter:description" content={pageDescription} />
-  <meta name="twitter:image" content={coverUrl} />
+  <meta name="twitter:image" content={pageCoverImage} />
   <meta name="twitter:image:alt" content={pageDescription} />
 
   <!-- iOS meta tags & icons -->
